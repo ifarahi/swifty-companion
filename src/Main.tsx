@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Login from './Views/Login';
-import Home from './Views/Home';
-import { useAuthContext } from './Providers/auth-provider';
+import Login from './views/Login';
+import Home from './views/Home';
+import { useAuthContext } from './providers/auth-provider';
 
 const Main = () => {
   const { authorized } = useAuthContext();
