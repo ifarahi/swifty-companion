@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { useAuthContext } from '../providers/auth-provider';
 import Button from '../components/Button';
 import { colors } from '../styles';
 import Loader from '../components/Loader';
+import Logo from '../components/Logo';
 
 const Login: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,11 +19,7 @@ const Login: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.heading}>
-        <Text style={styles.headingPrimary}>
-          Swifty<Text style={styles.headingSecondary}>Companion</Text>
-        </Text>
-      </View>
+      <Logo style={styles.logo} />
       <Button onPress={handleLogin} title="login" style={styles.button} />
     </SafeAreaView>
   );
@@ -34,16 +31,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  heading: {
+  logo: {
     marginTop: 150,
     marginBottom: 200,
   },
-  headingPrimary: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: colors.white,
-  },
-  headingSecondary: { fontSize: 24, fontWeight: '300', color: colors.white },
   button: {},
 });
 

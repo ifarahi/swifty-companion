@@ -5,13 +5,13 @@ import {
   TouchableOpacity,
   TouchableOpacityProps,
   Text,
-  ViewStyle,
+  TextStyle,
 } from 'react-native';
 import { colors } from '../../styles';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
-  titleStyle?: StyleProp<ViewStyle>;
+  titleStyle?: StyleProp<TextStyle>;
 }
 
 const Button: FC<ButtonProps> = ({

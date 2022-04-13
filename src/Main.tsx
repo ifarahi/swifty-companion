@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './views/Login';
-import Home from './views/Home';
+import Search from './views/Search';
 import { useAuthContext } from './providers/auth-provider';
 
 const Main = () => {
@@ -16,10 +16,10 @@ const Main = () => {
           <Stack.Screen
             options={{
               headerShown: false,
-              title: 'Home',
+              title: 'Search',
             }}
-            name="Home"
-            component={Home}
+            name="Search"
+            component={Search}
           />
         ) : (
           <Stack.Screen

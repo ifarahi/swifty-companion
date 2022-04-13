@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
-import { IconLoader } from '../../icons';
 import { colors } from '../../styles';
 
 const Loader: FC = () => {

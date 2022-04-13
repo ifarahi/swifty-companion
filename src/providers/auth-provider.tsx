@@ -24,7 +24,11 @@ export const AuthProvider = ({ children }: any) => {
   };
 
   const isAuthorized = async () => {
-    if (await getAuthData()) setAuthorized(true);
+    const authD = await getAuthData();
+    if (authD) {
+      console.log(authD);
+      setAuthorized(true);
+    }
   };
 
   const contextValue = {
