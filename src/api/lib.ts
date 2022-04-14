@@ -52,10 +52,10 @@ axiosApiInstance.interceptors.response.use(
   },
   async function (error) {
     const originalRequest = error.config;
-    if (error.response.status === 403 && !originalRequest._retry) {
+    if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       const oldAuth = await getAuthData();
-      const newAuth = await refreshToken(oldAuth.accessToken);
+      const newAuth = await refreshToken(oldAuth.refreshToken);
       axios.defaults.headers.common['Authorization'] =
         'Bearer ' + newAuth.accessToken;
       storeAuthData(newAuth);

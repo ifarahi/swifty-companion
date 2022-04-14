@@ -10,8 +10,8 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType>({
   authorized: false,
-  setAuthorized: () => null, // dummy func
-  auth: () => null, // dummy func
+  setAuthorized: () => null,
+  auth: () => null,
 });
 
 export const AuthProvider = ({ children }: any) => {
@@ -26,7 +26,6 @@ export const AuthProvider = ({ children }: any) => {
   const isAuthorized = async () => {
     const authD = await getAuthData();
     if (authD) {
-      console.log(authD);
       setAuthorized(true);
     }
   };

@@ -1,20 +1,31 @@
-import React, { useState } from 'react';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import React, { FC, useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, View, TextInput } from 'react-native';
 import { getUserByUsername } from '../api';
 import Button from '../components/Button';
 import Loader from '../components/Loader';
 import Logo from '../components/Logo';
 import { colors } from '../styles';
+import { RootStackParamList } from '../types';
 
-const Search = () => {
+type DetailsProps = NativeStackScreenProps<RootStackParamList, 'Search'>;
+
+const Search: FC<DetailsProps> = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const onUsernameChange = (value: string) => setUsername(value.trim());
+
   const onSearch = async () => {
     setIsLoading(true);
-    const data = await getUserByUsername(username);
-    console.log(data);
+    const [error, userData] = await getUserByUsername(username);
+    if (!error) {
+      navigation.navigate('Details', {
+        userData,
+      });
+    } else {
+      console.log('error: ', error);
+    }
     setIsLoading(false);
   };
 
