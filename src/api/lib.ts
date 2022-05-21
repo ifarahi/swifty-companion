@@ -6,11 +6,11 @@ import {
   AuthorizeResult,
 } from 'react-native-app-auth';
 import { storeAuthData, getAuthData } from '../helpers';
+import secrets from '../config/secrets';
 
 const config = {
-  clientId: 'c71337b66ddf283e6919ec3894ffca705d0263601227f579d50f7a04f99be4e1',
-  clientSecret:
-    '93c08c81311534ffe76880c083cbfa624ac3820bc1a29c00f35bea36c6a994f3',
+  clientId: secrets.CLIENT_ID,
+  clientSecret: secrets.CLIENT_SECRET_ID,
   redirectUrl: 'com.myswiftycompanion://callback',
   scopes: ['public'],
   serviceConfiguration: {

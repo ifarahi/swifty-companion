@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, ViewProps } from 'react-native';
+import { TabNodeExternalProps } from '../TabNavList/TabNode';
 
-export interface TabPaneProps extends ViewProps {
+export interface TabPaneProps extends ViewProps, TabNodeExternalProps {
   children?: React.ReactNode;
   key?: string;
   active?: boolean;

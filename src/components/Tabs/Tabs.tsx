@@ -41,6 +41,7 @@ const parseTabs = (children: ReactNode): ParsedTabs[] => {
 
 const findDefaultIndex = (tabs: ParsedTabs[], defaultKey?: string): number => {
   const defaultIndex = tabs.findIndex((tab) => tab.key === defaultKey);
+
   if (defaultIndex > -1) return defaultIndex;
   return 0;
 };
@@ -56,7 +57,7 @@ const Tabs: React.FC<TabsProps> = ({
   const [activeKey, setActiveKey] = useState<string | undefined>(
     defaultActiveKey,
   );
-  const [activeIndex, setActiveIndex] = useState<number>(() =>
+  const [activeIndex, setActiveIndex] = useState<number>(
     findDefaultIndex(tabs, defaultActiveKey),
   );
 

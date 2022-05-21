@@ -1,6 +1,6 @@
 import Tabs, { ParsedTabs } from './Tabs';
-import TabPanel from './TabPanelList/TabPane';
+import TabPane from './TabPanelList/TabPane';
 
-export { Tabs, TabPanel };
+export { Tabs, TabPane };
 
 export type { ParsedTabs };

@@ -3,39 +3,53 @@ import {
   Text,
   TouchableOpacity,
   TouchableOpacityProps,
-  TextStyle,
-  StyleProp,
   StyleSheet,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
 } from 'react-native';
 import { ParsedTabs } from '..';
+import { colors } from '../../../styles';
+
+export interface TabNodeExternalProps {
+  tabNodeStyle?: StyleProp<ViewStyle>;
+  titleStyle?: StyleProp<TextStyle>;
+}
 
 interface TabNodeProps extends TouchableOpacityProps {
   tab: ParsedTabs;
-  textStyle?: StyleProp<TextStyle>;
-  onInternalTabClick: (key: string) => void;
+  active: boolean;
+  onInternalTabClick: (key?: string) => void;
 }
 
-const TabNode: FC<TabNodeProps> = ({
-  tab,
-  onInternalTabClick,
-  style,
-  textStyle,
-}) => {
-  console.log('tab giving props:', tab.props);
+const TabNode: FC<TabNodeProps> = ({ tab, active, onInternalTabClick }) => {
+  const { tabNodeStyle, titleStyle, title } = tab.props;
+
   return (
     <TouchableOpacity
-      style={[style, styles.tabNode]}
+      style={[styles.container, tabNodeStyle, active ? styles.active : null]}
       onPress={() => onInternalTabClick(tab.key)}>
-      <Text style={textStyle}>{tab.props.title}</Text>
+      <Text style={[styles.title, titleStyle]}>{title}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  tabNode: {
-    width: 50,
-    borderWidth: 1,
-    borderRadius: 2,
+  container: {
+    width: 70,
+    borderRadius: 30,
+    borderColor: colors.white,
+    paddingRight: 8,
+    paddingLeft: 8,
+    alignItems: 'center',
+    paddingVertical: 2,
+    marginRight: 10,
+  },
+  title: {
+    color: colors.white,
+  },
+  active: {
+    backgroundColor: colors.primary,
   },
 });
 

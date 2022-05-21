@@ -1,23 +1,15 @@
 import React, { FC } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  FlatList,
-} from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, Image } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 import { colors } from '../styles';
 import Tabs from '../components/Tabs/Tabs';
-import { TabPanel } from '../components/Tabs';
+import { TabPane } from '../components/Tabs';
 
 type DetailsProps = NativeStackScreenProps<RootStackParamList, 'Details'>;
 
 const Details: FC<DetailsProps> = ({ route }) => {
   const { userData } = route.params;
-  const data = Array(10).fill({ name: 'name' });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -38,22 +30,16 @@ const Details: FC<DetailsProps> = ({ route }) => {
             style={styles.profileImage}
           />
         </View>
-        <Tabs style={styles.tabs}>
-          <TabPanel key="one" style={styles.tabOne} title="tabOne">
-            <Text>hello Tab 0</Text>
-          </TabPanel>
-          <TabPanel key="two" style={styles.tabTwo} title="tabTwo">
-            <FlatList
-              data={data}
-              renderItem={({ item }) => (
-                <Text style={{ width: 50 }}>{item.name}</Text>
-              )}
-              horizontal
-              style={{
-                marginHorizontal: 10,
-              }}
-            />
-          </TabPanel>
+        <Tabs style={styles.tabs} defaultActiveKey="skills">
+          <TabPane key="profile" title="Profile">
+            <Text>Profile Section</Text>
+          </TabPane>
+          <TabPane key="projects" title="Projects">
+            <Text>Project Section</Text>
+          </TabPane>
+          <TabPane key="skills" title="Skills">
+            <Text>Skills Section</Text>
+          </TabPane>
         </Tabs>
       </View>
     </SafeAreaView>
@@ -93,17 +79,7 @@ const styles = StyleSheet.create({
     borderRadius: 65,
   },
   tabs: {
-    marginTop: 70,
-    borderColor: colors.white,
-    borderWidth: 2,
-  },
-  tabOne: {
-    backgroundColor: colors.white,
-    marginVertical: 20,
-  },
-  tabTwo: {
-    backgroundColor: colors.white,
-    marginVertical: 20,
+    marginTop: 100,
   },
 });
 
