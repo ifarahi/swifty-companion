@@ -14,6 +14,7 @@ import Tabs from '../components/Tabs/Tabs';
 import { TabPane } from '../components/Tabs';
 import ProjectInfo from '../components/ProjectInfo';
 import { mapUser } from '../helpers/ft-api';
+import Skill from '../components/Skill';
 
 type DetailsProps = NativeStackScreenProps<RootStackParamList, 'Details'>;
 
@@ -51,6 +52,7 @@ const Details: FC<DetailsProps> = ({ route }) => {
               renderItem={({ item }) => {
                 return (
                   <ProjectInfo
+                    key={item.id}
                     name={item.name}
                     isMarked={item.isMarked}
                     validated={item.isValidated}
@@ -62,7 +64,20 @@ const Details: FC<DetailsProps> = ({ route }) => {
             />
           </TabPane>
           <TabPane key="skills" title="Skills">
-            <Text>Skills Section</Text>
+            <FlatList
+              data={userData.skills}
+              renderItem={({ item }) => {
+                return (
+                  <Skill
+                    key={item.id}
+                    name={item.name}
+                    level={item.level}
+                    maxLevel={userData.maxLevel}
+                    style={styles.skill}
+                  />
+                );
+              }}
+            />
           </TabPane>
         </Tabs>
       </View>
@@ -108,8 +123,11 @@ const styles = StyleSheet.create({
   },
   projectInfo: {
     marginBottom: 10,
-    width: '90%',
+    width: '95%',
     alignSelf: 'center',
+  },
+  skill: {
+    marginBottom: 18,
   },
 });
 

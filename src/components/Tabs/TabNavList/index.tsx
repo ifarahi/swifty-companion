@@ -13,6 +13,7 @@ const TabNavList: FC = () => {
       renderItem={({ item, index }) => {
         return (
           <TabNode
+            key={item.key}
             tab={item}
             active={index == activeIndex}
             onInternalTabClick={onInternalTabClick}
