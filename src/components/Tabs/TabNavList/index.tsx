@@ -11,8 +11,6 @@ const TabNavList: FC = () => {
       data={tabs}
       horizontal
       renderItem={({ item, index }) => {
-        console.log('index: ', index);
-        console.log('activeIndex: ', activeIndex);
         return (
           <TabNode
             tab={item}

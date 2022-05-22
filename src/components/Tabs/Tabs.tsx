@@ -84,8 +84,12 @@ const Tabs: React.FC<TabsProps> = ({
   return (
     <TabsContext.Provider value={contextValue}>
       <View style={style} {...restProps}>
-        <TabNavList />
-        <TabPanelList {...TabPanelListProps} />
+        <View>
+          <TabNavList />
+        </View>
+        <View>
+          <TabPanelList {...TabPanelListProps} />
+        </View>
       </View>
     </TabsContext.Provider>
   );

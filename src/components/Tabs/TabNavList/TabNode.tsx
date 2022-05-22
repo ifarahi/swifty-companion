@@ -37,6 +37,7 @@ const TabNode: FC<TabNodeProps> = ({ tab, active, onInternalTabClick }) => {
 const styles = StyleSheet.create({
   container: {
     width: 70,
+    height: 24,
     borderRadius: 30,
     borderColor: colors.white,
     paddingRight: 8,
@@ -47,6 +48,8 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.white,
+    fontSize: 16,
+    fontWeight: '400',
   },
   active: {
     backgroundColor: colors.primary,
