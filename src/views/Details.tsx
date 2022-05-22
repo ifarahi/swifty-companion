@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React from 'react';
+import uuid from 'react-native-uuid';
 import {
   SafeAreaView,
   StyleSheet,
@@ -15,26 +16,15 @@ import { TabPane } from '../components/Tabs';
 import ProjectInfo from '../components/ProjectInfo';
 import { mapUser } from '../helpers/ft-api';
 import Skill from '../components/Skill';
+import Profile from '../components/Profile';
 
 type DetailsProps = NativeStackScreenProps<RootStackParamList, 'Details'>;
 
-const Details: FC<DetailsProps> = ({ route }) => {
+const Details: React.FC<DetailsProps> = ({ route }) => {
   const userData = mapUser(route.params.userData);
-
-  console.log('project: ', userData.projects[0]);
 
   return (
     <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          position: 'absolute',
-          top: 15,
-          right: 15,
-        }}>
-        <Text style={{ color: colors.white, fontWeight: '500', fontSize: 16 }}>
-          Menu
-        </Text>
-      </View>
       <View style={styles.details}>
         <View style={styles.profileImageContnainer}>
           <Image
@@ -42,17 +32,23 @@ const Details: FC<DetailsProps> = ({ route }) => {
             style={styles.profileImage}
           />
         </View>
-        <Tabs style={styles.tabs} defaultActiveKey="skills">
+        <Tabs style={styles.tabs} defaultActiveKey="profile">
           <TabPane key="profile" title="Profile">
-            <Text>Profile tab</Text>
+            <Profile
+              displayName={userData.displayName}
+              login={userData.login}
+              email={userData.email}
+              wallet={userData.wallet}
+              level={userData.level}
+            />
           </TabPane>
           <TabPane key="projects" title="Projects">
             <FlatList
+              keyExtractor={() => uuid.v4() as string}
               data={userData.projects}
               renderItem={({ item }) => {
                 return (
                   <ProjectInfo
-                    key={item.id}
                     name={item.name}
                     isMarked={item.isMarked}
                     validated={item.isValidated}
@@ -65,11 +61,11 @@ const Details: FC<DetailsProps> = ({ route }) => {
           </TabPane>
           <TabPane key="skills" title="Skills">
             <FlatList
+              keyExtractor={() => uuid.v4() as string}
               data={userData.skills}
               renderItem={({ item }) => {
                 return (
                   <Skill
-                    key={item.id}
                     name={item.name}
                     level={item.level}
                     maxLevel={userData.maxLevel}

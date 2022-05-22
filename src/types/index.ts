@@ -39,4 +39,5 @@ export type RegularUserType = {
   maxLevel: number;
   skills: SkillType[];
   projects: ProjectType[];
+  level: number;
 };

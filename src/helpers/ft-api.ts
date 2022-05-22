@@ -41,6 +41,7 @@ export function mapUser(data: Record<string, unknown>): RegularUserType {
     isStaff: data['staff?'],
     maxLevel: maxLevel,
     skills: skills,
+    level: ftCursusLevel(data.cursus_users),
     projects: createProjects(
       data.projects_users as Record<string, Record<string, unknown>>[],
     ),
@@ -112,4 +113,13 @@ function groupProjectsByParent(projects: ProjectType[]): ProjectType[] {
 
     return group;
   }
+}
+
+function ftCursusLevel(cursus: unknown): number {
+  if (Array.isArray(cursus)) {
+    if (typeof cursus[0].level === 'number') {
+      return cursus[0].level;
+    }
+  }
+  return 0;
 }

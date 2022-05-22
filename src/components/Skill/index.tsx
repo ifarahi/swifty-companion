@@ -9,11 +9,17 @@ interface SkillProps extends ViewProps {
   maxLevel: number;
 }
 
-const Skill: React.FC<SkillProps> = ({ name, level, maxLevel, style }) => {
+const Skill: React.FC<SkillProps> = ({
+  name,
+  level,
+  maxLevel,
+  style,
+  ...props
+}) => {
   const percentage = (level * 100) / maxLevel;
 
   return (
-    <View style={[styles.container, style]}>
+    <View style={[styles.container, style]} {...props}>
       <View style={styles.description}>
         <Text style={styles.text}>{name}</Text>
         <Text style={styles.text}>{level.toFixed(2)}</Text>
