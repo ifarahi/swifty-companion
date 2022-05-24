@@ -27,9 +27,11 @@ const Skill: React.FC<SkillProps> = ({
       <View style={styles.progress}>
         <ProgressBar
           style={{ width: '80%' }}
-          percentage={percentage.toFixed(2)}
+          percentage={percentage.toFixed(0)}
         />
-        <Text style={styles.text}>{`${percentage.toFixed(2)}%`}</Text>
+        <Text style={styles.text}>{`${
+          percentage < 100 ? percentage.toFixed(2) : percentage.toFixed(0)
+        }%`}</Text>
       </View>
     </View>
   );

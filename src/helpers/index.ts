@@ -25,6 +25,7 @@ export const storeAuthData = (authData: any) =>
 
 export const getAuthData = () => getData(AUTH_DATA_KEY);
 
+export const removeAuthData = () => AsyncStorage.removeItem(AUTH_DATA_KEY);
 // user data related helpers
 
 type TypeOf =

@@ -1,4 +1,4 @@
-import { axiosApiInstance, authorizeUser } from './lib';
+import { axiosApiInstance, authorizeUser, revoketoken } from './lib';
 import config from '../config';
 
 export const getUserByUsername = async (username: string) => {
@@ -13,3 +13,5 @@ export const getUserByUsername = async (username: string) => {
 };
 
 export { authorizeUser as authorize };
+
+export { revoketoken };

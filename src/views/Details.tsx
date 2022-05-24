@@ -1,13 +1,6 @@
 import React from 'react';
 import uuid from 'react-native-uuid';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  FlatList,
-} from 'react-native';
+import { SafeAreaView, StyleSheet, View, Image, FlatList } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 import { colors } from '../styles';
@@ -17,14 +10,16 @@ import ProjectInfo from '../components/ProjectInfo';
 import { mapUser } from '../helpers/ft-api';
 import Skill from '../components/Skill';
 import Profile from '../components/Profile';
+import Actions from '../components/Actions';
 
 type DetailsProps = NativeStackScreenProps<RootStackParamList, 'Details'>;
 
-const Details: React.FC<DetailsProps> = ({ route }) => {
+const Details: React.FC<DetailsProps> = ({ route, navigation }) => {
   const userData = mapUser(route.params.userData);
 
   return (
     <SafeAreaView style={styles.container}>
+      <Actions navigation={navigation} />
       <View style={styles.details}>
         <View style={styles.profileImageContnainer}>
           <Image

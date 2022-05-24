@@ -4,6 +4,7 @@ import { colors } from '../../styles/index';
 
 import checkIcon from '../../icons/checkIcon.png';
 import uncheckIcon from '../../icons/uncheckIcon.png';
+import inProgressIcon from '../../icons/inProgressIcon.png';
 
 interface ProjectInfoProps extends ViewProps {
   name: string;
@@ -11,6 +12,9 @@ interface ProjectInfoProps extends ViewProps {
   validated: boolean | null;
   isMarked: boolean;
 }
+
+const textOverflowEllipsis = (text: string): string =>
+  text.length > 28 ? `${text.slice(0, 28)}...` : text;
 
 const ProjectInfo: React.FC<ProjectInfoProps> = ({
   name,
@@ -22,9 +26,13 @@ const ProjectInfo: React.FC<ProjectInfoProps> = ({
 }) => {
   return (
     <View style={[styles.container, style]} {...props}>
-      <Text style={styles.text}>{name}</Text>
+      <Text style={styles.text}>{textOverflowEllipsis(name)}</Text>
       <View style={styles.details}>
-        <Text style={styles.text}>{`${percentage}%`}</Text>
+        {isMarked ? (
+          <Text style={styles.text}>{`${percentage}%`}</Text>
+        ) : (
+          <Image style={styles.inProgressicon} source={inProgressIcon} />
+        )}
         {isMarked && (
           <Image
             style={styles.icon}
@@ -60,6 +68,11 @@ const styles = StyleSheet.create({
   icon: {
     height: 16,
     width: 16,
+    marginLeft: 10,
+  },
+  inProgressicon: {
+    height: 25,
+    width: 25,
     marginLeft: 10,
   },
 });
