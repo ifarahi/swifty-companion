@@ -2,6 +2,20 @@
 
 The aim of this project is to allow [42 School](https://42.fr/) candidates to search for their colleagues and view their profiles which contain the following (image, name, login, wallet, current cursus level) and the projects they worked on with the following details (project status, final mark) and the skills they acquired during their cursus.
 
-### Screens
+## Screens
 
 ![screens from the app](https://i.ibb.co/Pz5D765/Screens.png")
+
+## Installation
+
+> This project is created using react-native CLI
+
+```
+npm install
+```
+
+## Usage for android
+
+```
+npm run android
+```
