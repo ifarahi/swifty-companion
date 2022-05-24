@@ -5,6 +5,7 @@ import { getUserByUsername } from '../api';
 import Button from '../components/Button';
 import Loader from '../components/Loader';
 import Logo from '../components/Logo';
+import Toast from 'react-native-toast-message';
 import { colors } from '../styles';
 import { RootStackParamList } from '../types';
 
@@ -24,7 +25,11 @@ const Search: FC<DetailsProps> = ({ navigation }) => {
         userData,
       });
     } else {
-      console.log('error: ', error);
+      Toast.show({
+        type: 'error',
+        text1: ` Could not found any candidate (${username})`,
+      });
+      setUsername('');
     }
     setIsLoading(false);
   };
