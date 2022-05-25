@@ -15,9 +15,14 @@ const Search: FC<DetailsProps> = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const onUsernameChange = (value: string) => setUsername(value.trim());
+  const onUsernameChange = (value: string) => {
+    if (value.length > 30) return;
+    setUsername(value.trim());
+  };
 
   const onSearch = async () => {
+    if (!username.length) return;
+
     setIsLoading(true);
     const [error, userData] = await getUserByUsername(username);
     if (!error) {
@@ -40,7 +45,7 @@ const Search: FC<DetailsProps> = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <Logo style={styles.logo} />
       <View style={styles.searchContainer}>
-        <Text style={styles.headingPrimary}>Find a user</Text>
+        <Text style={styles.headingPrimary}>Find a candidate</Text>
         <Text style={styles.headingSecondary}>
           Please insert a username in the field below
         </Text>
@@ -55,6 +60,7 @@ const Search: FC<DetailsProps> = ({ navigation }) => {
         style={styles.searchButton}
         titleStyle={styles.searchButtonTitle}
         onPress={onSearch}
+        disabled={isLoading}
       />
     </SafeAreaView>
   );

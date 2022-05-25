@@ -24,6 +24,7 @@ const Button: FC<ButtonProps> = ({
   return (
     <TouchableOpacity
       style={[styles.button, style, disabled ? styles.disabled : undefined]}
+      disabled={disabled}
       {...props}>
       <Text style={[styles.title, titleStyle]}>{title}</Text>
     </TouchableOpacity>
