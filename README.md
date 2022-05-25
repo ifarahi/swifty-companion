@@ -8,7 +8,8 @@ The aim of this project is to allow [42 School](https://42.fr/) candidates to se
 
 ## Installation
 
-> This project is created using react-native CLI
+> This project is created using react-native CLI,
+> please refer to the [Official documentation](https://reactnative.dev/docs/environment-setup) to set up the development environment
 
 ```
 npm install
