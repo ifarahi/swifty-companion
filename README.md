@@ -19,3 +19,12 @@ npm install
 ```
 npm run android
 ```
+
+## Configuration
+
+Rename the file `secrets-example.ts` to `secrets.ts` in `src/config` which include the following config variables:
+
+| Name               | Required | Type     | Default value | Description |
+| ------------------ | -------- | -------- | ------------- | ----------- |
+| `CLIENT_SECRET_ID` | true     | `string` | -             | -           |
+| `CLIENT_ID`        | true     | `string` | -             | -           |
