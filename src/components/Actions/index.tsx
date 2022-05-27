@@ -14,27 +14,35 @@ import logoutIcon from '../../icons/logoutIcon.png';
 import backIcon from '../../icons/backIcon.png';
 
 interface AcrtionsProps extends ViewProps {
-  navigation: NativeStackNavigationProp<
-    RootStackParamList,
-    'Details',
-    undefined
-  >;
+  navigation?: NativeStackNavigationProp<RootStackParamList, any, undefined>;
+  enablePrevious?: boolean;
 }
 
-const Actions: React.FC<AcrtionsProps> = ({ navigation }) => {
+const Actions: React.FC<AcrtionsProps> = ({
+  navigation,
+  enablePrevious,
+  style,
+}) => {
   const { logout } = useAuthContext();
 
   const onLogout = async () => {
     await logout();
   };
 
-  const navToSearch = () => navigation.navigate('Search');
+  const navToSearch = () => navigation?.navigate('Search');
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={navToSearch}>
-        <Image source={backIcon} style={styles.backIcon} />
-      </TouchableOpacity>
+    <View
+      style={[
+        styles.container,
+        { justifyContent: enablePrevious ? 'space-between' : 'flex-end' },
+        style,
+      ]}>
+      {enablePrevious && (
+        <TouchableOpacity onPress={navToSearch}>
+          <Image source={backIcon} style={styles.backIcon} />
+        </TouchableOpacity>
+      )}
       <TouchableOpacity onPress={onLogout}>
         <Image source={logoutIcon} style={styles.logout} />
       </TouchableOpacity>
@@ -47,7 +55,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     width: '98%',
     top: 15,

@@ -6,11 +6,11 @@ import { RootStackParamList } from '../types';
 import { colors } from '../styles';
 import Tabs from '../components/Tabs/Tabs';
 import { TabPane } from '../components/Tabs';
-import ProjectInfo from '../components/ProjectInfo';
 import { mapUser } from '../helpers/ft-api';
 import Skill from '../components/Skill';
 import Profile from '../components/Profile';
 import Actions from '../components/Actions';
+import Projects from '../components/Projects';
 
 type DetailsProps = NativeStackScreenProps<RootStackParamList, 'Details'>;
 
@@ -19,7 +19,7 @@ const Details: React.FC<DetailsProps> = ({ route, navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Actions navigation={navigation} />
+      <Actions navigation={navigation} enablePrevious />
       <View style={styles.details}>
         <View style={styles.profileImageContnainer}>
           <Image
@@ -38,21 +38,7 @@ const Details: React.FC<DetailsProps> = ({ route, navigation }) => {
             />
           </TabPane>
           <TabPane key="projects" title="Projects">
-            <FlatList
-              keyExtractor={() => uuid.v4() as string}
-              data={userData.projects}
-              renderItem={({ item }) => {
-                return (
-                  <ProjectInfo
-                    name={item.name}
-                    isMarked={item.isMarked}
-                    validated={item.isValidated}
-                    percentage={item.finalMark}
-                    style={styles.projectInfo}
-                  />
-                );
-              }}
-            />
+            <Projects projects={userData.projects} />
           </TabPane>
           <TabPane key="skills" title="Skills">
             <FlatList
@@ -111,11 +97,6 @@ const styles = StyleSheet.create({
   tabs: {
     marginTop: 100,
     paddingVertical: 16,
-  },
-  projectInfo: {
-    marginBottom: 10,
-    width: '95%',
-    alignSelf: 'center',
   },
   skill: {
     marginBottom: 18,

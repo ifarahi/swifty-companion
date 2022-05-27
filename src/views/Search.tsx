@@ -8,6 +8,7 @@ import Logo from '../components/Logo';
 import Toast from 'react-native-toast-message';
 import { colors } from '../styles';
 import { RootStackParamList } from '../types';
+import Actions from '../components/Actions';
 
 type DetailsProps = NativeStackScreenProps<RootStackParamList, 'Search'>;
 
@@ -24,6 +25,7 @@ const Search: FC<DetailsProps> = ({ navigation }) => {
     if (!username.length) return;
 
     setIsLoading(true);
+    setUsername('');
     const [error, userData] = await getUserByUsername(username);
     if (!error) {
       navigation.navigate('Details', {
@@ -34,7 +36,6 @@ const Search: FC<DetailsProps> = ({ navigation }) => {
         type: 'error',
         text1: ` Could not found any candidate (${username})`,
       });
-      setUsername('');
     }
     setIsLoading(false);
   };
@@ -43,6 +44,7 @@ const Search: FC<DetailsProps> = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Actions />
       <Logo style={styles.logo} />
       <View style={styles.searchContainer}>
         <Text style={styles.headingPrimary}>Find a candidate</Text>
@@ -73,7 +75,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    marginVertical: 50,
+    marginTop: 100,
+    marginBottom: 50,
   },
   searchContainer: {
     width: '90%',
