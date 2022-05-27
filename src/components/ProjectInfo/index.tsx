@@ -5,12 +5,15 @@ import { colors } from '../../styles/index';
 import checkIcon from '../../icons/checkIcon.png';
 import uncheckIcon from '../../icons/uncheckIcon.png';
 import inProgressIcon from '../../icons/inProgressIcon.png';
+import moreIcon from '../../icons/moreIcon2.png';
+import { ProjectType } from '../../types/interfaces';
 
 interface ProjectInfoProps extends ViewProps {
   name: string;
   percentage: number | null;
   validated: boolean | null;
   isMarked: boolean;
+  subProjects?: ProjectType[];
 }
 
 const textOverflowEllipsis = (text: string): string =>
@@ -22,11 +25,17 @@ const ProjectInfo: React.FC<ProjectInfoProps> = ({
   validated,
   isMarked,
   style,
+  subProjects,
   ...props
 }) => {
   return (
     <View style={[styles.container, style]} {...props}>
-      <Text style={styles.text}>{textOverflowEllipsis(name)}</Text>
+      <View style={styles.nameContainer}>
+        {subProjects?.length ? (
+          <Image source={moreIcon} style={styles.moreIcon} />
+        ) : null}
+        <Text style={styles.text}>{textOverflowEllipsis(name)}</Text>
+      </View>
       <View style={styles.details}>
         {isMarked ? (
           <Text style={styles.text}>{`${percentage}%`}</Text>
@@ -74,6 +83,15 @@ const styles = StyleSheet.create({
     height: 25,
     width: 25,
     marginLeft: 10,
+  },
+  nameContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  moreIcon: {
+    marginTop: 3,
+    marginRight: 5,
+    marginLeft: -8,
   },
 });
 

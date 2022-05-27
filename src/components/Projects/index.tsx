@@ -55,6 +55,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
                 isMarked={item.isMarked}
                 validated={item.isValidated}
                 percentage={item.finalMark}
+                subProjects={item.projects}
               />
             </TouchableOpacity>
           );
