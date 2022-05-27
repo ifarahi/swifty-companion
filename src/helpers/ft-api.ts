@@ -117,7 +117,7 @@ function groupProjectsByParent(projects: ProjectType[]): ProjectType[] {
 
 function ftCursusLevel(cursus: unknown): number {
   if (Array.isArray(cursus)) {
-    if (typeof cursus[2].level === 'number') {
+    if (cursus[2] && typeof cursus[2].level === 'number') {
       return cursus[2].level;
     }
   }
